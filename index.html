@@ -1,27 +1,136 @@
-<html>
-<head><title>GAMES</title></head>
-<BODY>
-<h1>WELCOME</h1>
-<H2><center>ON THIS WEBSITE WE PROVIDE YOU FREE GAMES</center></H2>
-<h3><center>AND DON'T WORRY IT'S SAFE AND FREE TO USE</center></h3>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 50px;
+    }
 
+    .todo-container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
 
-<h2>HERE IS THE LINK:</h2>
-<H3><a href="https://steamunlocked.net">DON'T WORRY IT'S SAFE</a></H3>
+    h2 {
+      text-align: center;
+      color: #333;
+    }
 
-<h4>BEFORE CLICKING ON THE LINK CHECK THE STEPS TO DOWNLOAD:-</h4>
+    input[type="text"] {
+      width: 75%;
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-<img src="file:///C:/Users/DELL/Pictures/Screenshots/Screenshot%20(31).png">
-<H2>1.SEARCH THE GAME YOU WANT TO PLAY</H2>
-<img src="C:\Users\DELL\Pictures\Screenshots\Screenshot (32).png">
-<H2>2.SCROLL DOWN AND CLICK ON THE DOWNLOAD BUTTON</H2>
-<img src="C:\Users\DELL\Pictures\Screenshots\Screenshot (33).png">
-<h2>3.WAIT FOR 15 SECONDS</h2>
-<IMG src="C:\Users\DELL\Pictures\Screenshots\Screenshot (35).png">
-<H2>4.AFTER 15 SECONDS THE DOWNLOAD BUTTON WILL APPEAR CLICK ON IT</H2>  
-<IMG src="C:\Users\DELL\Pictures\Screenshots\Screenshot (37).png">
-<H2>5.YOUR DOWNLOAD WILL AUTOMATICALLY START</H2>
-<H1>NOW ENJOY AND</H1>
-<H1>THANKS FOR VISITING!!</H1>
-</BODY>
+    button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #28a745;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background: #f8f8f8;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li.completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+      margin-left: 10px;
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+
+    .task-text {
+      flex: 1;
+    }
+
+    .actions {
+      display: flex;
+      gap: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-container">
+    <h2>📝 To-Do List</h2>
+    <div>
+      <input type="text" id="taskInput" placeholder="Enter a new task...">
+      <button onclick="addTask()">Add</button>
+    </div>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const taskText = input.value.trim();
+
+      if (taskText === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      const li = document.createElement("li");
+      
+      const span = document.createElement("span");
+      span.textContent = taskText;
+      span.className = "task-text";
+      span.onclick = () => li.classList.toggle("completed");
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.onclick = () => li.remove();
+
+      const actionsDiv = document.createElement("div");
+      actionsDiv.className = "actions";
+      actionsDiv.appendChild(deleteBtn);
+
+      li.appendChild(span);
+      li.appendChild(actionsDiv);
+
+      document.getElementById("taskList").appendChild(li);
+      input.value = "";
+    }
+  </script>
+</body>
 </html>
